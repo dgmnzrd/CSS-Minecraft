@@ -2,7 +2,7 @@
 
 A Minecraft clone made with pure HTML & CSS – no JavaScript.
 
-Play the game: [benjaminaster.com/css-minecraft](https://benjaminaster.com/css-minecraft/)
+Play the original game: [benjaminaster.com/css-minecraft](https://benjaminaster.com/css-minecraft/)
 
 ![screenshot of CSS Minecraft](./assets/screenshot.png)
 
@@ -22,6 +22,8 @@ main.scss
 icons.css
 assets/
 README.md
+package.json
+pnpm-lock.yaml
 ```
 
 The generated files do not need to be committed:
@@ -36,21 +38,50 @@ These files can be regenerated locally from the source files.
 
 ## Requirements
 
-You need Node.js and the following CLI tools:
+You need Node.js and pnpm.
+
+Check your installed versions:
 
 ```bash
-npm install -g pug-cli sass
+node -v
+pnpm -v
 ```
 
-You can also run the tools with `npx` instead of installing them globally.
+If pnpm is not installed, install it with Corepack:
+
+```bash
+corepack enable
+corepack prepare pnpm@latest --activate
+```
+
+Or install it globally with npm:
+
+```bash
+npm install -g pnpm
+```
+
+## Install dependencies
+
+After cloning the project, install the dependencies:
+
+```bash
+pnpm install
+```
+
+This installs the local development tools used by the project:
+
+- `pug-cli`
+- `sass`
+- `concurrently`
+
+You do not need to install `pug` or `sass` globally.
 
 ## Build
 
 Generate the compiled HTML and CSS:
 
 ```bash
-pug index.pug
-sass main.scss:main.css
+pnpm build
 ```
 
 This creates:
@@ -61,27 +92,36 @@ main.css
 main.css.map
 ```
 
-## Build without global installs
+These generated files are ignored by Git.
+
+## Development mode
+
+Run the Pug and Sass watchers:
 
 ```bash
-npx pug index.pug
-npx sass main.scss:main.css
+pnpm dev
 ```
 
-## Watch mode
+This keeps watching:
 
-During development, you can keep both compilers running:
-
-```bash
-pug index.pug -w
-sass main.scss:main.css -w
+```text
+index.pug  -> index.html
+main.scss  -> main.css
 ```
+
+Important: `pnpm dev` only compiles and watches files. It does not start a web server by itself.
 
 ## Run locally
 
-After compiling, open `index.html` directly in the browser or use a local static server.
+Use two terminal tabs.
 
-Example:
+Terminal 1:
+
+```bash
+pnpm dev
+```
+
+Terminal 2:
 
 ```bash
 python3 -m http.server 8000
@@ -92,6 +132,65 @@ Then open:
 ```text
 http://localhost:8000
 ```
+
+The browser will serve the generated `index.html`.
+
+When you edit `index.pug` or `main.scss`, `pnpm dev` regenerates the compiled files. Refresh the browser to see the changes.
+
+## Alternative local run
+
+You can also build once and then serve the folder:
+
+```bash
+pnpm build
+python3 -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000
+```
+
+## Package scripts
+
+The project includes these scripts:
+
+```bash
+pnpm build
+```
+
+Compiles Pug and Sass once.
+
+```bash
+pnpm build:pug
+```
+
+Compiles `index.pug` into `index.html`.
+
+```bash
+pnpm build:sass
+```
+
+Compiles `main.scss` into `main.css`.
+
+```bash
+pnpm dev
+```
+
+Runs both Pug and Sass in watch mode.
+
+```bash
+pnpm dev:pug
+```
+
+Watches and compiles only `index.pug`.
+
+```bash
+pnpm dev:sass
+```
+
+Watches and compiles only `main.scss`.
 
 ## World configuration
 
