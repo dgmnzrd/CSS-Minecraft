@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 //- pug index.pug -w
+
+//-
+//- World configuration
+//-
+//- This project renders the world directly in the DOM.
+//- Increasing these values can quickly make the page slower because every
+//- position creates one radio group with one cube option per block type.
+//-
+//- Total positions: layers * rows * columns
+//- Current world: 9 * 9 * 9 = 729 positions
+//- Current block types: 8
+//-
+
+- const world = { layers: 9, rows: 9, columns: 9 };
+- const layers = world.layers;
+- const rows = world.rows;
+- const columns = world.columns;
+
 - const blocks = ["air", "stone", "grass", "dirt", "log", "wood", "leaves", "glass"];
 - const blockLabels = { air: "Remove block", stone: "Stone", grass: "Grass", dirt: "Dirt", log: "Oak log", wood: "Oak planks", leaves: "Leaves", glass: "Glass" };
-- const layers = 9;
-- const rows = 9;
-- const columns = 9;
+
 <html lang="en" style="--layers: #{layers}; --rows: #{rows}; --columns: #{columns}">
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
