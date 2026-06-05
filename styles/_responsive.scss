@@ -65,6 +65,19 @@
 			font-size: .62rem;
 		}
 
+		& .mode-panel {
+			min-inline-size: 10rem;
+		}
+
+		& .mode-status {
+			min-block-size: 2.85rem;
+			padding: .45rem .55rem;
+		}
+
+		& .mode-message {
+			font-size: .66rem;
+		}
+
 		& .block-chooser {
 			grid-template-columns: repeat(list.length($blocks), 2.85rem);
 

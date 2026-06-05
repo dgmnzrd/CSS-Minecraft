@@ -45,6 +45,72 @@
 		text-shadow: 0 1px 0 #000;
 	}
 
+	& .mode-panel {
+		min-inline-size: 11rem;
+	}
+
+	& .mode-status {
+		position: relative;
+		display: grid;
+		align-items: center;
+		min-block-size: 3.25rem;
+		padding: .55rem .65rem;
+		border-radius: .55rem;
+		background:
+			linear-gradient(180deg, #ffffff12, #00000018),
+			#111;
+		border: 1px solid #ffffff18;
+		box-shadow:
+			inset .12rem .12rem 0 #ffffff12,
+			inset -.12rem -.12rem 0 #0008;
+	}
+
+	& .mode-message {
+		display: none;
+		align-items: center;
+		color: #f5f5f5;
+		font-size: .78rem;
+		font-weight: 800;
+		line-height: 1.25;
+		letter-spacing: .03em;
+		text-transform: uppercase;
+
+		&::before {
+			content: "";
+			display: inline-block;
+			inline-size: .65rem;
+			block-size: .65rem;
+			margin-inline-end: .45rem;
+			border-radius: .15rem;
+			background-image: var(--mode-image);
+			background-size: cover;
+			background-position: center;
+			image-rendering: pixelated;
+			box-shadow:
+				0 0 0 1px #000,
+				0 0 .45rem #ffffff26;
+		}
+	}
+
+	& .mode-message.air {
+		color: #ff9b9b;
+		--mode-image: var(--pickaxe-image);
+
+		&::before {
+			border-radius: 999rem;
+		}
+	}
+
+	@each $block in $blocks {
+		& .mode-message.#{$block} {
+			--mode-image: var(--#{$block}-image);
+		}
+
+		&:has(.block-chooser > .#{$block} > input[type=radio]:checked) .mode-message.#{$block} {
+			display: inline-flex;
+		}
+	}
+
 	& .block-chooser {
 		display: grid;
 		grid-template-columns: repeat(list.length($blocks), 3.25rem);
