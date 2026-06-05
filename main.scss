@@ -653,6 +653,13 @@ main {
 					background-image: var(--log-top-image);
 				}
 			}
+
+			&:has(> .cube.glass > input[type=radio]:checked) > .cube > label {
+				opacity: .72;
+				outline: 1px solid #ffffff35;
+				outline-offset: -1px;
+				box-shadow: inset 0 0 calc(var(--cube-size) / 5) #ffffff25;
+			}
 		}
 	}
 }
@@ -664,16 +671,78 @@ main {
 	outline-offset: calc(-1 * var(--outline-width));
 }
 
+.cubes-container > .cube > label:hover {
+	filter: brightness(115%);
+}
+
 .controls:has(.air > input[type=radio]:checked) ~ main .cubes-container:hover > .cube > label {
-	filter: brightness(70%);
+	outline-color: #ff6b6b;
+	filter: brightness(58%) saturate(1.2);
+}
+
+.controls:has(.air > input[type=radio]:checked) ~ main .cubes-container:hover > .cube > label::after {
+	content: "";
+	position: absolute;
+	inset: 18%;
+	border: calc(var(--cube-size) / 34) solid #ff6b6bcc;
+	border-radius: .12rem;
+	box-shadow: 0 0 calc(var(--cube-size) / 8) #ff2f2f88;
+	pointer-events: none;
+}
+
+.controls label:focus-visible,
+.controls button:focus-visible,
+.info .close:focus-visible {
+	outline: 3px solid #f7d66d;
+	outline-offset: 3px;
+}
+
+.controls .block-chooser > label.air:has(> input[type=radio]:checked) {
+	outline-color: #ff6b6b;
+	box-shadow:
+		inset .16rem .16rem 0 #ffffff30,
+		inset -.16rem -.16rem 0 #0009,
+		0 0 0 .12rem #000,
+		0 0 1rem #ff6b6baa;
+}
+
+.controls .block-chooser > label.air:has(> input[type=radio]:checked) .slot-name {
+	background-color: #3b0505f2;
+	border-color: #ff6b6b80;
+}
+
+@media (max-width: 900px) {
+	.controls {
+		max-inline-size: calc(100vw - 1rem);
+
+		& .block-chooser {
+			grid-template-columns: repeat(list.length($blocks), 3rem);
+
+			& > label {
+				inline-size: 3rem;
+				block-size: 3rem;
+			}
+		}
+
+		& .move-buttons {
+			flex-wrap: wrap;
+		}
+	}
 }
 
 @media (max-width: 700px) {
+	:root {
+		--cube-size: 4.35rem;
+		--camera-distance: 46rem;
+	}
+
 	.info {
 		inset-block-start: .5rem;
 		inline-size: calc(100vw - 1rem);
 		padding: .7rem;
 		border-radius: .7rem;
+		max-block-size: 38vh;
+		overflow: auto;
 
 		& .quick-help {
 			grid-template-columns: 1fr;
@@ -691,6 +760,16 @@ main {
 		overflow-x: auto;
 		justify-content: flex-start;
 		scrollbar-width: thin;
+		padding: .45rem;
+
+		& .hud-panel {
+			padding: .45rem;
+			border-radius: .65rem;
+		}
+
+		& .label {
+			font-size: .62rem;
+		}
 
 		& .block-chooser {
 			grid-template-columns: repeat(list.length($blocks), 2.85rem);
@@ -703,6 +782,7 @@ main {
 
 		& .move-buttons {
 			gap: .4rem;
+			flex-wrap: nowrap;
 		}
 
 		& .move-button-pair {
@@ -710,10 +790,48 @@ main {
 			grid-template-rows: auto 2.45rem;
 		}
 
+		& .move-button-pair > .control-label {
+			font-size: .58rem;
+		}
+
 		& button {
 			inline-size: 2.45rem;
 			block-size: 2.45rem;
 			font-size: 1.15rem;
 		}
+	}
+}
+
+@media (max-height: 640px) {
+	.info {
+		max-block-size: 34vh;
+		overflow: auto;
+
+		& .quick-help {
+			display: none;
+		}
+	}
+
+	.controls {
+		scale: .92;
+		transform-origin: center bottom;
+	}
+}
+
+@media (max-height: 520px) {
+	.info {
+		display: none;
+	}
+
+	.controls {
+		scale: .86;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.controls .block-chooser > label,
+	.controls button,
+	.controls .slot-name {
+		transition: none;
 	}
 }
