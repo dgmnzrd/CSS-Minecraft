@@ -20,6 +20,7 @@
 - const layers = world.layers;
 - const rows = world.rows;
 - const columns = world.columns;
+- const totalPositions = layers * rows * columns;
 
 - const blocks = ["air", "stone", "grass", "dirt", "log", "wood", "leaves", "glass"];
 - const blockLabels = { air: "Remove block", stone: "Stone", grass: "Grass", dirt: "Dirt", log: "Oak log", wood: "Oak planks", leaves: "Leaves", glass: "Glass" };
@@ -58,6 +59,13 @@
 			<div class="info-header">
 				<p class="eyebrow">Pure HTML & CSS sandbox</p>
 				<h1>CSS Minecraft</h1>
+
+				<div class="world-status" aria-label="Current world status">
+					<span>CSS-only</span>
+					<span>Preset: #{activeWorldPreset}</span>
+					<span>World: #{layers} × #{rows} × #{columns}</span>
+					<span>#{totalPositions} positions</span>
+				</div>
 			</div>
 
 			<p class="intro">
