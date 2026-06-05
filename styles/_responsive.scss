@@ -78,6 +78,18 @@
 			font-size: .66rem;
 		}
 
+		& .hint-panel {
+			min-inline-size: 9.5rem;
+		}
+
+		& .hud-hints {
+			padding: .45rem .55rem;
+
+			& span {
+				font-size: .6rem;
+			}
+		}
+
 		& .block-chooser {
 			grid-template-columns: repeat(list.length($blocks), 2.85rem);
 

@@ -111,6 +111,46 @@
 		}
 	}
 
+	& .hint-panel {
+		min-inline-size: 10.5rem;
+	}
+
+	& .hud-hints {
+		display: grid;
+		gap: .35rem;
+		padding: .55rem .65rem;
+		border-radius: .55rem;
+		background:
+			linear-gradient(180deg, #ffffff10, #0000001f),
+			#111;
+		border: 1px solid #ffffff18;
+		box-shadow:
+			inset .12rem .12rem 0 #ffffff10,
+			inset -.12rem -.12rem 0 #0008;
+
+		& span {
+			display: flex;
+			align-items: center;
+			color: #e9e9e9;
+			font-size: .68rem;
+			font-weight: 700;
+			line-height: 1.2;
+			letter-spacing: .02em;
+			text-transform: uppercase;
+
+			&::before {
+				content: "";
+				flex: 0 0 auto;
+				inline-size: .35rem;
+				block-size: .35rem;
+				margin-inline-end: .45rem;
+				background-color: #f7d66d;
+				box-shadow: 0 0 .45rem #f7d66d88;
+				rotate: 45deg;
+			}
+		}
+	}
+
 	& .block-chooser {
 		display: grid;
 		grid-template-columns: repeat(list.length($blocks), 3.25rem);
