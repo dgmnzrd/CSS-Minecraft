@@ -12,6 +12,13 @@ This project renders a small Minecraft-style world directly in the DOM using Pug
 
 There is no JavaScript controlling the game state. The interaction works through HTML radio inputs, labels, CSS selectors, `:has()`, 3D transforms and paused CSS animations.
 
+## Documentation
+
+Additional documentation is separated by topic:
+
+- [World configuration](./WORLD_CONFIG.md): explains world size, presets and performance limits.
+- [Architecture](./ARCHITECTURE.md): explains how the generated DOM, radio inputs, labels and CSS-only interactions work.
+
 ## Source files
 
 The repository should keep the source files:
@@ -22,6 +29,8 @@ main.scss
 icons.css
 assets/
 README.md
+WORLD_CONFIG.md
+ARCHITECTURE.md
 package.json
 pnpm-lock.yaml
 ```
@@ -191,49 +200,6 @@ pnpm dev:sass
 ```
 
 Watches and compiles only `main.scss`.
-
-## World configuration
-
-The world size is configured at the top of `index.pug`:
-
-```pug
-- const world = { layers: 9, rows: 9, columns: 9 };
-```
-
-These values mean:
-
-- `layers`: vertical height of the world.
-- `rows`: depth of the world.
-- `columns`: width of the world.
-
-The default world is:
-
-```text
-9 layers * 9 rows * 9 columns = 729 world positions
-```
-
-## Performance note
-
-This project creates the interactive world directly in HTML.
-
-Each position creates one radio group and one cube option per block type. Each cube also includes labels for the cube faces.
-
-Because of that, increasing the world size can quickly make the DOM much heavier.
-
-Recommended presets:
-
-```pug
-// Small
-- const world = { layers: 7, rows: 7, columns: 7 };
-
-// Default
-- const world = { layers: 9, rows: 9, columns: 9 };
-
-// Large
-- const world = { layers: 11, rows: 11, columns: 11 };
-```
-
-For larger worlds, a JavaScript-based version would be more appropriate because it could render only the visible or changed blocks instead of generating every possible block state in advance.
 
 ## Browser support
 

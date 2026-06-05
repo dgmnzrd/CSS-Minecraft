@@ -9,11 +9,14 @@
 //- position creates one radio group with one cube option per block type.
 //-
 //- Total positions: layers * rows * columns
-//- Current world: 9 * 9 * 9 = 729 positions
+//- Default world: 9 * 9 * 9 = 729 positions
 //- Current block types: 8
 //-
 
-- const world = { layers: 9, rows: 9, columns: 9 };
+- const worldPresets = { small: { layers: 7, rows: 7, columns: 7 }, default: { layers: 9, rows: 9, columns: 9 }, large: { layers: 11, rows: 11, columns: 11 }, experimental: { layers: 13, rows: 13, columns: 13 } };
+- const activeWorldPreset = "default";
+- const world = worldPresets[activeWorldPreset];
+
 - const layers = world.layers;
 - const rows = world.rows;
 - const columns = world.columns;
