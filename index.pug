@@ -75,36 +75,47 @@
 		</label>
 	</section>
 
-	<section class="controls">
-		<div class="block-chooser">
-			<span class="label">Block type</span>
-			each block in blocks
-				<label class="#{block}" title="#{blockLabels[block]}" aria-label="#{blockLabels[block]}">
-					<input type="radio" name="block-type" !{block === "stone" ? "checked" : ""} />
-				</label>
-			//- /each
+	<section class="controls" aria-label="Game controls">
+		<div class="hud-panel inventory-panel">
+			<span class="label">Inventory</span>
+
+			<div class="block-chooser" aria-label="Block inventory">
+				each block in blocks
+					<label class="#{block}" title="#{blockLabels[block]}" aria-label="#{blockLabels[block]}">
+						<input type="radio" name="block-type" !{block === "stone" ? "checked" : ""} />
+						<span class="slot-name">#{blockLabels[block]}</span>
+					</label>
+				//- /each
+			</div>
 		</div>
 
-		<div class="move-buttons">
-			<div class="move-button-pair">
-				<span class="label">Vertical</span>
-				<button type="button" class="up icon:arrow-circle-up" title="Move upwards" aria-label="Move upwards"></button>
-				<button type="button" class="down icon:arrow-circle-down" title="Move downwards" aria-label="Move downwards"></button>
-			</div>
-			<div class="move-button-pair">
-				<span class="label">Horizontal</span>
-				<button type="button" class="forwards icon:arrow-upward" title="Move forwards" aria-label="Move forwards"></button>
-				<button type="button" class="backwards icon:arrow-downward" title="Move backwards" aria-label="Move backwards"></button>
-			</div>
-			<div class="move-button-pair">
-				<span class="label">Rotation</span>
-				<button type="button" class="clockwise icon:rotate-right" title="Rotate clockwise" aria-label="Rotate clockwise"></button>
-				<button type="button" class="counterclockwise icon:rotate-left" title="Rotate counterclockwise" aria-label="Rotate counterclockwise"></button>
-			</div>
-			<div class="move-button-pair">
-				<span class="label">View</span>
-				<button type="button" class="look-up icon:keyboard-arrow-up" title="Look up" aria-label="Look up"></button>
-				<button type="button" class="look-down icon:keyboard-arrow-down" title="Look down" aria-label="Look down"></button>
+		<div class="hud-panel movement-panel">
+			<span class="label">Movement</span>
+
+			<div class="move-buttons">
+				<div class="move-button-pair">
+					<span class="control-label">Vertical</span>
+					<button type="button" class="up icon:arrow-circle-up" title="Move upwards" aria-label="Move upwards"></button>
+					<button type="button" class="down icon:arrow-circle-down" title="Move downwards" aria-label="Move downwards"></button>
+				</div>
+
+				<div class="move-button-pair">
+					<span class="control-label">Horizontal</span>
+					<button type="button" class="forwards icon:arrow-upward" title="Move forwards" aria-label="Move forwards"></button>
+					<button type="button" class="backwards icon:arrow-downward" title="Move backwards" aria-label="Move backwards"></button>
+				</div>
+
+				<div class="move-button-pair">
+					<span class="control-label">Rotation</span>
+					<button type="button" class="clockwise icon:rotate-right" title="Rotate clockwise" aria-label="Rotate clockwise"></button>
+					<button type="button" class="counterclockwise icon:rotate-left" title="Rotate counterclockwise" aria-label="Rotate counterclockwise"></button>
+				</div>
+
+				<div class="move-button-pair">
+					<span class="control-label">View</span>
+					<button type="button" class="look-up icon:keyboard-arrow-up" title="Look up" aria-label="Look up"></button>
+					<button type="button" class="look-down icon:keyboard-arrow-down" title="Look down" aria-label="Look down"></button>
+				</div>
 			</div>
 		</div>
 	</section>
