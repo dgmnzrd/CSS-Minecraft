@@ -12,8 +12,8 @@ Each world position is generated in `index.pug` using three nested loops:
 
 ```pug
 for _, layer in Array(layers)
-	for _, row in Array(rows)
-		for _, column in Array(columns)
+  for _, row in Array(rows)
+    for _, column in Array(columns)
 ```
 
 Each generated position represents one possible location in the world grid.
@@ -55,7 +55,7 @@ When a position has `air` selected, CSS hides that position:
 
 ```scss
 .cubes-container:has(> .cube.air > input[type=radio]:checked) {
-	display: none;
+  display: none;
 }
 ```
 
@@ -97,7 +97,7 @@ CSS uses `:has()` to check which block is currently selected:
 
 ```scss
 .controls:has(.block-chooser > .stone > input[type=radio]:checked) ~ main .cubes-container > .cube:not(.stone) {
-	display: none;
+  display: none;
 }
 ```
 
@@ -111,7 +111,7 @@ Each control button changes the animation state while it is active:
 
 ```scss
 .controls:has(.up:active) ~ main .down {
-	animation-play-state: running;
+  animation-play-state: running;
 }
 ```
 

@@ -18,10 +18,10 @@ The available presets are defined here:
 
 ```pug
 - const worldPresets = {
-- 	small: { layers: 7, rows: 7, columns: 7 },
-- 	default: { layers: 9, rows: 9, columns: 9 },
-- 	large: { layers: 11, rows: 11, columns: 11 },
-- 	experimental: { layers: 13, rows: 13, columns: 13 }
+-   small: { layers: 7, rows: 7, columns: 7 },
+-   default: { layers: 9, rows: 9, columns: 9 },
+-   large: { layers: 11, rows: 11, columns: 11 },
+-   experimental: { layers: 13, rows: 13, columns: 13 }
 - };
 ```
 
