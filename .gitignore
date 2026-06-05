@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Node / dependencias
+node_modules/
+
+# Sass
+.sass-cache/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Temporales
+*.tmp
+
+index.html
+main.css
+main.css.map

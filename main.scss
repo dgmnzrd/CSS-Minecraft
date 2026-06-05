@@ -207,7 +207,6 @@ a {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
 		justify-items: center;
-		// justify-content: center;
 		gap: .5rem;
 
 		& > *:not(.label) {
@@ -216,12 +215,11 @@ a {
 
 		& > .label {
 			grid-column: 1 / span 2;
-			// display: block;
 		}
 	}
 
 	& .block-chooser > .label {
-		grid-column-end: span length($blocks);
+		grid-column-end: span list.length($blocks);
 	}
 
 	& .move-buttons {
@@ -252,24 +250,31 @@ a {
 	&:has(.up:active) ~ main .down {
 		animation-play-state: running;
 	}
+
 	&:has(.down:active) ~ main .up {
 		animation-play-state: running;
 	}
+
 	&:has(.clockwise:active) ~ main .clockwise {
 		animation-play-state: running;
 	}
+
 	&:has(.counterclockwise:active) ~ main .counterclockwise {
 		animation-play-state: running;
 	}
+
 	&:has(.forwards:active) ~ main .backwards {
 		animation-play-state: running;
 	}
+
 	&:has(.backwards:active) ~ main .forwards {
 		animation-play-state: running;
 	}
+
 	&:has(.look-up:active) ~ main .look-up {
 		animation-play-state: running;
 	}
+
 	&:has(.look-down:active) ~ main .look-down {
 		animation-play-state: running;
 	}
@@ -301,87 +306,110 @@ main {
 
 	& .look-up {
 		animation: var(--animation-duration) linear 1ms paused look-up;
+
 		@keyframes look-up {
 			from {
 				rotate: x 0turn;
 			}
+
 			to {
 				rotate: x calc(var(--max-rotation));
 			}
 		}
 	}
+
 	& .look-down {
 		animation: var(--animation-duration) linear 1ms paused look-down;
+
 		@keyframes look-down {
 			from {
 				rotate: x 0turn;
 			}
+
 			to {
 				rotate: x calc(-1 * var(--max-rotation));
 			}
 		}
 	}
+
 	& .down {
 		animation: var(--animation-duration) linear 1ms paused move-down;
+
 		@keyframes move-down {
 			from {
 				translate: 0 0;
 			}
+
 			to {
 				translate: 0 calc(var(--max-translation));
 			}
 		}
 	}
+
 	& .up {
 		animation: var(--animation-duration) linear 1ms paused move-up;
+
 		@keyframes move-up {
 			from {
 				translate: 0 0;
 			}
+
 			to {
 				translate: 0 calc(-1 * var(--max-translation));
 			}
 		}
 	}
+
 	& .forwards {
 		animation: var(--animation-duration) linear 1ms paused move-forwards;
+
 		@keyframes move-forwards {
 			from {
 				translate: 0 0 0;
 			}
+
 			to {
 				translate: 0 0 calc(-1 * var(--max-translation));
 			}
 		}
 	}
+
 	& .backwards {
 		animation: var(--animation-duration) linear 1ms paused move-backwards;
+
 		@keyframes move-backwards {
 			from {
 				translate: 0 0 0;
 			}
+
 			to {
 				translate: 0 0 calc(var(--max-translation));
 			}
 		}
 	}
+
 	& .clockwise {
 		animation: var(--animation-duration) linear 1ms paused rotate-clockwise;
+
 		@keyframes rotate-clockwise {
 			from {
 				rotate: y 0turn;
 			}
+
 			to {
 				rotate: y calc(-1 * var(--max-rotation));
 			}
 		}
 	}
+
 	& .counterclockwise {
 		animation: var(--animation-duration) linear 1ms paused rotate-counterclockwise;
+
 		@keyframes rotate-counterclockwise {
 			from {
 				rotate: y 0turn;
 			}
+
 			to {
 				rotate: y calc(var(--max-rotation));
 			}
@@ -431,22 +459,27 @@ main {
 						rotate: y 0grad;
 						filter: brightness(92%);
 					}
+
 					&.back {
 						rotate: y 200grad;
 						filter: brightness(68%);
 					}
+
 					&.left {
 						rotate: y 100grad;
 						filter: brightness(76%);
 					}
+
 					&.right {
 						rotate: y -100grad;
 						filter: brightness(84%);
 					}
+
 					&.top {
 						rotate: x 100grad;
 						filter: brightness(100%);
 					}
+
 					&.bottom {
 						rotate: x -100grad;
 						filter: brightness(60%);
@@ -458,13 +491,14 @@ main {
 				&.top {
 					background-image: var(--grass-top-image);
 				}
+
 				&.bottom {
 					background-image: var(--dirt-image);
 				}
 			}
 
 			&:has(> .cube.log > input[type=radio]:checked) > .cube > label {
-				&:is(.top, bottom) {
+				&:is(.top, .bottom) {
 					background-image: var(--log-top-image);
 				}
 			}
